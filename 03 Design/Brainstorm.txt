@@ -1,0 +1,22 @@
+
+
+
+Features needed:
+
+- create account
+- log into existing account
+
+- new project
+- open project
+- save project
+
+- create risk
+- edit risk
+- add risk to table
+
+- sort list by priority
+
+- add countermeassure to risk
+- revise risk/consequence
+
+- display table
