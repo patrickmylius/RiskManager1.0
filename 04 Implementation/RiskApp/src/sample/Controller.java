@@ -5,7 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 
-public class Controller {
+public class Controller extends sample.Risk {
 
     // --------------------------------------------------{Buttons}------------------------------------------------------
 
@@ -70,6 +70,15 @@ public class Controller {
     @FXML
     private TableView<?> viewTableView;
 
+
     // ------------------------------------------------{Functions}------------------------------------------------------
+
+
+
+    // -----------------------------------------------{Hakuna Matata}---------------------------------------------------
+
+    Controller(String caseExp, int prob, int consVal) {
+        super(caseExp, prob, consVal);
+    }
 
 }

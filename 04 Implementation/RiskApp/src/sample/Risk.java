@@ -12,7 +12,6 @@ public class Risk extends ListOfRisks{
     String caseExplanation;
     String consequence;
 
-
     Risk(String caseExp, int prob, int consVal){
         this.caseExplanation = caseExp;
         this.probability = prob;
