@@ -16,7 +16,7 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -24,9 +24,9 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <TabPane prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Start">
+          <Tab fx:id="StartTab" text="Start">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -35,7 +35,7 @@
                               <Image url="@../../../../03%20Design/Image1.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="loginButtonLogIn" layoutX="326.0" layoutY="285.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="148.0" text="Log in" />
+                        <Button fx:id="loginButtonLogIn" layoutX="326.0" layoutY="285.0" mnemonicParsing="false" onAction="#logIn" prefHeight="26.0" prefWidth="148.0" text="Log in" />
                         <Label alignment="CENTER" contentDisplay="CENTER" layoutX="326.0" layoutY="139.0" prefHeight="54.0" prefWidth="148.0" text="Log In " textAlignment="CENTER">
                            <font>
                               <Font size="24.0" />
@@ -43,16 +43,16 @@
                         </Label>
                         <TextField fx:id="logInTextFieldPassword" layoutX="326.0" layoutY="237.0" promptText="Enter Password" />
                         <TextField fx:id="logInTextFieldEmail" layoutX="326.0" layoutY="193.0" promptText="Enter E-mail" />
-                        <Button fx:id="loginButtonSignUp" layoutX="325.0" layoutY="327.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="148.0" text="Sign up" />
+                        <Button fx:id="loginButtonSignUp" layoutX="325.0" layoutY="327.0" mnemonicParsing="false" onAction="#GoToSignUp" prefHeight="26.0" prefWidth="148.0" text="Sign up" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab text="Sign Up">
+          <Tab fx:id="SignUpTab" text="Sign Up">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="signUpButtonSignUp" layoutX="326.0" layoutY="356.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="148.0" text="Sign Up" />
+                        <Button fx:id="signUpButtonSignUp" layoutX="326.0" layoutY="356.0" mnemonicParsing="false" onAction="#signUp" prefHeight="26.0" prefWidth="148.0" text="Sign Up" />
                         <Label alignment="CENTER" layoutX="326.0" layoutY="153.0" prefHeight="54.0" prefWidth="148.0" text="Sign Up">
                            <font>
                               <Font size="24.0" />
@@ -64,19 +64,24 @@
                            </image>
                         </ImageView>
                         <TextField fx:id="signUpTextFieldEmail" layoutX="326.0" layoutY="219.0" promptText="Enter E-mail" />
-                        <TextField fx:id="signUpTextFieldVerifyPassword" layoutX="326.0" layoutY="312.0" promptText="Verify Password" />
                         <TextField fx:id="signUpTextFieldPassword" layoutX="326.0" layoutY="272.0" promptText="Enter Password" />
+                        <TextField fx:id="signUpTextFieldVerifyPassword" layoutX="326.0" layoutY="312.0" promptText="Verify Password" />
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab text="Home">
+            <Tab fx:id="HomeTab" text="Home">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="homeButtonNew" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" text="New Riskanalysis" />
                         <Button fx:id="homeButtonLogOut" layoutX="722.0" layoutY="27.0" mnemonicParsing="false" text="Log out" />
                         <Button fx:id="homeButtonEdit" layoutX="139.0" layoutY="27.0" mnemonicParsing="false" text="Edit" />
+                        <Label layoutX="149.0" layoutY="146.0" text="You are logged in">
+                           <font>
+                              <Font size="64.0" />
+                           </font>
+                        </Label>
                      </children>
                   </AnchorPane>
               </content>

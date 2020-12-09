@@ -1,13 +1,29 @@
 package sample;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
-import javafx.scene.control.TextArea;
+import javafx.scene.control.*;
 
-public class Controller extends sample.Risk {
+import java.io.*;
 
+public class Controller {
+
+
+
+    BufferedWriter output = new BufferedWriter(new FileWriter("credentials.txt",true));
+
+
+    @FXML
+    private TabPane tabPane;
+
+    @FXML
+    private Tab StartTab;
+
+    @FXML
+    private Tab SignUpTab;
+
+    @FXML
+    private Tab HomeTab;
     // --------------------------------------------------{Buttons}------------------------------------------------------
 
     @FXML
@@ -63,8 +79,10 @@ public class Controller extends sample.Risk {
     @FXML
     private TextField signUpTextFieldEmail;
 
+
     @FXML
     private TextField signUpTextFieldVerifyPassword;
+
 
     @FXML
     private TextField signUpTextFieldPassword;
@@ -85,6 +103,9 @@ public class Controller extends sample.Risk {
     @FXML
     private TableView<?> viewTableView;
 
+    public Controller() throws IOException {
+    }
+
 
     // ------------------------------------------------{Functions}------------------------------------------------------
 
@@ -99,14 +120,45 @@ public class Controller extends sample.Risk {
 
     }
 
+    // ------------------------------------------------{InAppFunctions}------------------------------------------------------
+    @FXML
+    void logIn(ActionEvent event) {
+
+    }
+
+    @FXML
+    void signUp(ActionEvent event) throws IOException {
+
+        SignUpData signUpData = new SignUpData();
+        signUpData.Email = signUpTextFieldEmail.getText();
+        signUpData.Password = signUpTextFieldPassword.getText();
+        signUpData.VerifyPassword = signUpTextFieldVerifyPassword.getText();
+
+        output.write("\n");
+        output.write(signUpData.Email);
+        output.write("\n");
+        output.write(signUpData.Password);
+        output.write("\n");
+        output.write(signUpData.VerifyPassword);
+        output.write("\n");
+        output.write("----------");
+
+        output.close();
+
+        tabPane.getSelectionModel().select(StartTab);
+    }
+
+    @FXML
+    void GoToSignUp(ActionEvent event) {
+        tabPane.getSelectionModel().select(SignUpTab);
+
+    }
+
 
 
 
     // -----------------------------------------------{Hakuna Matata}---------------------------------------------------
 
-    Controller(String caseExp, int prob, int consVal) {
-        super(caseExp, prob, consVal);
-    }
 
 
 
