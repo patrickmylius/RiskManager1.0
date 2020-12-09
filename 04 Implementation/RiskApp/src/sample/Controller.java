@@ -7,29 +7,16 @@ import javafx.scene.control.TextField;
 
 public class Controller {
 
+    // --------------------------------------------------{Buttons}------------------------------------------------------
+
     @FXML
     private Button loginButtonLogIn;
-
-    @FXML
-    private TextField logInTextFieldPassword;
-
-    @FXML
-    private TextField logInTextFieldEmail;
 
     @FXML
     private Button loginButtonSignUp;
 
     @FXML
     private Button signUpButtonSignUp;
-
-    @FXML
-    private TextField signUpTextFieldEmail;
-
-    @FXML
-    private TextField signUpTextFieldVerifyPassword;
-
-    @FXML
-    private TextField signUpTextFieldPassword;
 
     @FXML
     private Button homeButtonNew;
@@ -61,7 +48,28 @@ public class Controller {
     @FXML
     private Button viewButtonClose;
 
+    // -------------------------------------------------{TextFields}----------------------------------------------------
+
+    @FXML
+    private TextField logInTextFieldPassword;
+
+    @FXML
+    private TextField logInTextFieldEmail;
+
+    @FXML
+    private TextField signUpTextFieldEmail;
+
+    @FXML
+    private TextField signUpTextFieldVerifyPassword;
+
+    @FXML
+    private TextField signUpTextFieldPassword;
+
+    // --------------------------------------------------{Tables}-------------------------------------------------------
+
     @FXML
     private TableView<?> viewTableView;
+
+    // ------------------------------------------------{Functions}------------------------------------------------------
 
 }
