@@ -4,6 +4,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.TextArea;
 
 public class Controller extends sample.Risk {
 
@@ -48,7 +49,10 @@ public class Controller extends sample.Risk {
     @FXML
     private Button viewButtonClose;
 
-    // -------------------------------------------------{TextFields}----------------------------------------------------
+    @FXML
+    private Button createRiskButtonAddToTable;
+
+    // -------------------------------------------------{Text}----------------------------------------------------------
 
     @FXML
     private TextField logInTextFieldPassword;
@@ -65,6 +69,17 @@ public class Controller extends sample.Risk {
     @FXML
     private TextField signUpTextFieldPassword;
 
+
+    @FXML
+    private TextField createRiskTextFieldProbability;
+
+    @FXML
+    private TextField createRiskTextFieldConsequence;
+
+    @FXML
+    private TextArea createRiskTextAreaDescription;
+
+
     // --------------------------------------------------{Tables}-------------------------------------------------------
 
     @FXML
@@ -74,11 +89,26 @@ public class Controller extends sample.Risk {
     // ------------------------------------------------{Functions}------------------------------------------------------
 
 
+    void createRisk(){
+
+        String description = createRiskTextAreaDescription.getText();
+        int probability = Integer.parseInt(createRiskTextFieldProbability.getText());
+        int consequence = Integer.parseInt(createRiskTextFieldConsequence.getText());
+
+        Risk risk = new Risk(description,probability,consequence);
+
+    }
+
+
+
 
     // -----------------------------------------------{Hakuna Matata}---------------------------------------------------
 
     Controller(String caseExp, int prob, int consVal) {
         super(caseExp, prob, consVal);
     }
+
+
+
 
 }
