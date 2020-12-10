@@ -74,9 +74,9 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="homeButtonNew" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" text="New Riskanalysis" />
-                        <Button fx:id="homeButtonLogOut" layoutX="722.0" layoutY="27.0" mnemonicParsing="false" text="Log out" />
-                        <Button fx:id="homeButtonEdit" layoutX="139.0" layoutY="27.0" mnemonicParsing="false" text="Edit" />
+                        <Button fx:id="homeButtonNew" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" onAction="#HomeNewAnalysisButton" text="New Riskanalysis" />
+                        <Button fx:id="homeButtonLogOut" layoutX="722.0" layoutY="27.0" mnemonicParsing="false" onAction="#HomeLogOut" text="Log out" />
+                        <Button fx:id="homeButtonEdit" layoutX="172.0" layoutY="27.0" mnemonicParsing="false" onAction="#HomeEditButton" text="Edit" />
                         <Label layoutX="149.0" layoutY="146.0" text="You are logged in">
                            <font>
                               <Font size="64.0" />
@@ -90,13 +90,13 @@
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="editButtonEdit" layoutX="211.0" layoutY="24.0" mnemonicParsing="false" text="Edit" />
-                        <Button fx:id="editButtonSave" layoutX="116.0" layoutY="24.0" mnemonicParsing="false" text="Save Changes" />
+                        <Button fx:id="editButtonEdit" layoutX="285.0" layoutY="24.0" mnemonicParsing="false" text="Edit" />
+                        <Button fx:id="editButtonSave" layoutX="153.0" layoutY="24.0" mnemonicParsing="false" text="Save Changes" />
                         <Button fx:id="editButtonDelete" layoutX="726.0" layoutY="24.0" mnemonicParsing="false" text="Delete" />
                         <Button fx:id="editButtonNew" layoutX="22.0" layoutY="24.0" mnemonicParsing="false" text="Add New Risk" />
-                        <Button fx:id="editButtonExport" layoutX="300.0" layoutY="24.0" mnemonicParsing="false" text="Export" />
-                        <Button fx:id="editButtonView" layoutX="253.0" layoutY="24.0" mnemonicParsing="false" text="View" />
-                        <Button layoutX="355.0" layoutY="24.0" mnemonicParsing="false" text="Add Risk" />
+                        <Button fx:id="editButtonExport" layoutX="415.0" layoutY="24.0" mnemonicParsing="false" text="Export" />
+                        <Button fx:id="editButtonView" layoutX="348.0" layoutY="24.0" mnemonicParsing="false" text="View" />
+                        <Button layoutX="488.0" layoutY="24.0" mnemonicParsing="false" text="Add Risk" />
                      </children>
                   </AnchorPane>
               </content>

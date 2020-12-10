@@ -209,6 +209,21 @@ public class Controller  {
 
     }
 
+    @FXML
+    void HomeEditButton(ActionEvent event) {
+
+    }
+
+    @FXML
+    void HomeLogOut(ActionEvent event) {
+
+    }
+
+    @FXML
+    void HomeNewAnalysisButton(ActionEvent event) {
+
+    }
+
 
 
 
