@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import java.io.*;
 import java.util.*;
 
-public class Controller {
+public class Controller  {
 
 
 
