@@ -83,16 +83,16 @@
                         <Button fx:id="homeButtonNew" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" onAction="#HomeNewAnalysisButton" text="New Riskanalysis" />
                         <Button fx:id="homeButtonLogOut" layoutX="722.0" layoutY="27.0" mnemonicParsing="false" onAction="#HomeLogOut" text="Log out" />
                         <Button fx:id="homeButtonEdit" layoutX="172.0" layoutY="27.0" mnemonicParsing="false" onAction="#HomeEditButton" text="Edit" />
-                        <Label layoutX="149.0" layoutY="146.0" text="You are logged in">
-                           <font>
-                              <Font size="64.0" />
-                           </font>
-                        </Label>
+                        <Text fx:id="newRiskAnalysis1" layoutX="27.0" layoutY="89.0" onMouseClicked="#goToEdit" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="newRiskAnalysis2" layoutX="27.0" layoutY="115.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="newRiskAnalysis3" layoutX="27.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="newRiskAnalysis4" layoutX="27.0" layoutY="168.0" strokeType="OUTSIDE" strokeWidth="0.0" />
+                        <Text fx:id="newRiskAnalysis5" layoutX="27.0" layoutY="198.0" onMouseClicked="#goToEdit" strokeType="OUTSIDE" strokeWidth="0.0" />
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Edit">
+            <Tab fx:id="editTab" text="Edit">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

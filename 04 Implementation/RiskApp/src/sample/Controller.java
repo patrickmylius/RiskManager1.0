@@ -3,6 +3,7 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
 import java.io.*;
@@ -13,6 +14,8 @@ public class Controller  {
     // saves sign up details
     BufferedWriter output = new BufferedWriter(new FileWriter("credentials.txt",true));
     Scanner input = new Scanner(new FileReader("credentials.txt"));
+    public StringBuilder sb = new StringBuilder();
+
 
 
     @FXML
@@ -23,6 +26,11 @@ public class Controller  {
 
     @FXML
     private Tab SignUpTab;
+
+
+    @FXML
+    private Tab editTab;
+
 
     @FXML
     private Tab HomeTab;
@@ -77,6 +85,22 @@ public class Controller  {
 
 
     @FXML
+    private Text newRiskAnalysis1;
+
+    @FXML
+    private Text newRiskAnalysis2;
+
+    @FXML
+    private Text newRiskAnalysis3;
+
+    @FXML
+    private Text newRiskAnalysis4;
+
+    @FXML
+    private Text newRiskAnalysis5;
+
+
+    @FXML
     private TextField logInTextFieldPassword;
 
     @FXML
@@ -126,27 +150,27 @@ public class Controller  {
 
     }
 
-    void verifyPassword(){
-
-
+    void checkCreatedUsers(){
+        while (input.hasNext()) {
+            sb.append(input.next());
+        }
     }
 
-    // ------------------------------------------------{InAppFunctions}------------------------------------------------------
+    public void initialize(){
+        checkCreatedUsers();
+    }
+
+    // -------------------------------------------------{Booleans}------------------------------------------------------
+
+    boolean noFoundLogin = true;
+
+    // ------------------------------------------------{InAppFunctions}-------------------------------------------------
     @FXML
     void logIn(ActionEvent event) {
 
-        // retry loop in case of wrong credentials
-
-        String enteredEmail = logInTextFieldEmail.getText().toLowerCase();
-        String enteredPassword = logInTextFieldPassword.getText();
+        input.close();
 
         List<String[]> finalListOfUserDetail = new ArrayList<>();
-
-        StringBuilder sb = new StringBuilder();
-        while(input.hasNext()) {
-            sb.append(input.next());
-        }
-        input.close();
 
         String allLogins = sb.toString();
 
@@ -155,38 +179,38 @@ public class Controller  {
         listOfUserDetail.remove(listOfUserDetail.get(0));
 
         for (String s : listOfUserDetail) {
-
             String[] tmplist = s.split(":");
             finalListOfUserDetail.add(tmplist);
-
         }
+
+        System.out.println("button clicked");
+
+        String enteredEmail = logInTextFieldEmail.getText().toLowerCase();
+        String enteredPassword = logInTextFieldPassword.getText();
 
 
         for (int i = 0; i < finalListOfUserDetail.size(); i++) {
 
-            if (finalListOfUserDetail.get(i)[0].contains(enteredEmail.toLowerCase())){
-
-                if(finalListOfUserDetail.get(i)[1].contains(enteredPassword)){
-
-                    tabPane.getSelectionModel().select(HomeTab);
-
-                } else {
-                    startTextWarning.setText("Wrong Password");
-                }
-
-            } else {
-                startTextWarning.setText("Wrong Email");
+            if ((finalListOfUserDetail.get(i)[1].contains(enteredPassword)) && (finalListOfUserDetail.get(i)[0].contains(enteredEmail.toLowerCase()))) {
+                tabPane.getSelectionModel().select(HomeTab);
+                noFoundLogin = false;
+                break;
 
             }
 
         }
 
+        if(noFoundLogin){
+            startTextWarning.setText("Wrong email or password");
+        }
+
+
+
+
     }
 
     @FXML
     void signUp(ActionEvent event) throws IOException {
-
-        SignUpData signUpData = new SignUpData();
 
         String Email = signUpTextFieldEmail.getText().toLowerCase();
         String Password = signUpTextFieldPassword.getText();
@@ -203,12 +227,15 @@ public class Controller  {
             output.write(Password);
             output.write("\n");
             output.write("----------");
-
             output.close();
 
             tabPane.getSelectionModel().select(StartTab);
 
         }
+
+        checkCreatedUsers();
+        input.close();
+
     }
 
     @FXML
@@ -229,6 +256,15 @@ public class Controller  {
 
     @FXML
     void HomeNewAnalysisButton(ActionEvent event) {
+
+        newRiskAnalysis1.setText("analyse1");
+
+    }
+
+    @FXML
+    void goToEdit(MouseEvent event) {
+
+        tabPane.getSelectionModel().select(editTab);
 
     }
 
