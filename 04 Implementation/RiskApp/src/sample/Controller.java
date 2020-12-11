@@ -3,14 +3,14 @@ package sample;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.text.Text;
 
 import java.io.*;
 import java.util.*;
 
 public class Controller  {
 
-
-
+    // saves sign up details
     BufferedWriter output = new BufferedWriter(new FileWriter("credentials.txt",true));
     Scanner input = new Scanner(new FileReader("credentials.txt"));
 
@@ -73,6 +73,10 @@ public class Controller  {
     // -------------------------------------------------{Text}----------------------------------------------------------
 
     @FXML
+    private Text startTextWarning;
+
+
+    @FXML
     private TextField logInTextFieldPassword;
 
     @FXML
@@ -131,7 +135,9 @@ public class Controller  {
     @FXML
     void logIn(ActionEvent event) {
 
-        String enteredEmail = logInTextFieldEmail.getText();
+        // retry loop in case of wrong credentials
+
+        String enteredEmail = logInTextFieldEmail.getText().toLowerCase();
         String enteredPassword = logInTextFieldPassword.getText();
 
         List<String[]> finalListOfUserDetail = new ArrayList<>();
@@ -143,8 +149,6 @@ public class Controller  {
         input.close();
 
         String allLogins = sb.toString();
-
-        System.out.println(allLogins);
 
         List<String> listOfUserDetail = new ArrayList<>(Arrays.asList(allLogins.split("----------")));
 
@@ -160,39 +164,43 @@ public class Controller  {
 
         for (int i = 0; i < finalListOfUserDetail.size(); i++) {
 
-//            if(Objects.equals(Arrays.stream(finalListOfUserDetail.get(i)).filter(enteredEmail::equals).findAny().orElse(null), enteredEmail)){
-//                System.out.println("fuck");
-//                System.out.println(finalListOfUserDetail.indexOf(Arrays.stream(finalListOfUserDetail.get(i)).filter(enteredEmail::equals).findAny().orElse(null)));
-//            }
-            System.out.println(Arrays.stream(finalListOfUserDetail.get(i)).filter(enteredEmail::equals).findAny().orElse(null));
+            if (finalListOfUserDetail.get(i)[0].contains(enteredEmail.toLowerCase())){
+
+                if(finalListOfUserDetail.get(i)[1].contains(enteredPassword)){
+
+                    tabPane.getSelectionModel().select(HomeTab);
+
+                } else {
+                    startTextWarning.setText("Wrong Password");
+                }
+
+            } else {
+                startTextWarning.setText("Wrong Email");
+
+            }
 
         }
-
 
     }
 
     @FXML
     void signUp(ActionEvent event) throws IOException {
 
-
         SignUpData signUpData = new SignUpData();
 
-        signUpData.Email = signUpTextFieldEmail.getText();
-        signUpData.Password = signUpTextFieldPassword.getText();
-        signUpData.VerifyPassword = signUpTextFieldVerifyPassword.getText();
+        String Email = signUpTextFieldEmail.getText().toLowerCase();
+        String Password = signUpTextFieldPassword.getText();
+        String VerifyPassword = signUpTextFieldVerifyPassword.getText();
 
-        if( (signUpData.Email.equals("") || signUpData.Password.equals("")) || signUpData.VerifyPassword.equals("")){   // kinda sus
+        if( (Email.equals("") || Password.equals("")) || VerifyPassword.equals("")){
 
             System.out.println("FUCK");
 
         } else {
 
             output.write("\n");
-            output.write(signUpData.Email + ":");
-//            output.write("\n");
-            output.write(signUpData.Password + ":");
-//            output.write("\n");
-            output.write(signUpData.VerifyPassword);
+            output.write(Email + ":");
+            output.write(Password);
             output.write("\n");
             output.write("----------");
 
