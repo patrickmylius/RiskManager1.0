@@ -189,18 +189,18 @@ public class Controller  {
 
     }
 
-    static void sortRiskList(ObservableList<Risk> x){
+    static void sortRiskList(){
 
-        x.sort(Comparator.comparing(o -> o.probability * o.consequenceValue));
-        Collections.reverse(x);
+        risklist.sort(Comparator.comparing(o -> o.probability * o.consequenceValue));
+        Collections.reverse(risklist);
 
     }
 
-    static void setPriority(ObservableList<Risk> x){
+    static void setPriority(){
 
-        for (int i = 0; i < x.size(); i++) {
+        for (int i = 0; i < risklist.size(); i++) {
 
-            x.get(i).priority = i + 1;
+            risklist.get(i).priority = i + 1;
 
         }
 
@@ -210,6 +210,8 @@ public class Controller  {
 
     boolean noFoundLogin = true; // logIn
     int counter = 1; // add risk analysis
+
+    static ArrayList <Risk> risklist = new ArrayList<>();
 
 
     // ------------------------------------------------{InAppFunctions}-------------------------------------------------
@@ -375,9 +377,20 @@ public class Controller  {
     @FXML
     void createRiskAddRiskToTable(ActionEvent event){
 
-        createRiskTextAreaDescription.getText();
-        createRiskTextFieldProbability.getText();
-        createRiskTextFieldConsequence.getText();
+        Risk risk = new Risk(createRiskTextAreaDescription.getText(),
+                Integer.parseInt(createRiskTextFieldProbability.getText()),
+                        Integer.parseInt(createRiskTextFieldConsequence.getText()));
+
+        risklist.add(risk);
+
+        sortRiskList();
+        setPriority();
+
+        System.out.println(risklist.get(0).priority);
+        System.out.println(risklist.get(0).caseExplanation);
+        System.out.println(risklist.get(0).probability);
+        System.out.println(risklist.get(0).consequenceValue);
+
 
     }
 
