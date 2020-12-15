@@ -1,8 +1,11 @@
 package sample;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
 
@@ -15,8 +18,6 @@ public class Controller  {
     BufferedWriter output = new BufferedWriter(new FileWriter("credentials.txt",true));
     Scanner input = new Scanner(new FileReader("credentials.txt"));
     public StringBuilder sb = new StringBuilder();
-
-
 
     @FXML
     private TabPane tabPane;
@@ -34,7 +35,14 @@ public class Controller  {
 
     @FXML
     private Tab HomeTab;
+
+    @FXML
+    private Tab createRiskTab;
+
     // --------------------------------------------------{Buttons}------------------------------------------------------
+
+    @FXML
+    private Button HomeButtonOkButton;
 
     @FXML
     private Button loginButtonLogIn;
@@ -79,6 +87,10 @@ public class Controller  {
     private Button createRiskButtonAddToTable;
 
     // -------------------------------------------------{Text}----------------------------------------------------------
+
+
+    @FXML
+    private TextField homeTextFieldAnalysisName;
 
     @FXML
     private Text startTextWarning;
@@ -131,10 +143,24 @@ public class Controller  {
     // --------------------------------------------------{Tables}-------------------------------------------------------
 
     @FXML
-    private TableView<?> viewTableView;
+    public TableView<Risk> table;
+    public ObservableList<Risk> data;
 
     public Controller() throws IOException {
     }
+
+    @FXML
+    private TableColumn<?, ?> tablePriority;
+
+    @FXML
+    private TableColumn<?, ?> tableDescription;
+
+    @FXML
+    private TableColumn<?, ?> tableProbability;
+
+    @FXML
+    private TableColumn<?, ?> tableConsequence;
+
 
 
     // ------------------------------------------------{Functions}------------------------------------------------------
@@ -158,17 +184,46 @@ public class Controller  {
 
     public void initialize(){
         checkCreatedUsers();
+        HomeButtonOkButton.setVisible(false);
+        homeTextFieldAnalysisName.setVisible(false);
+
     }
 
-    // -------------------------------------------------{Booleans}------------------------------------------------------
+    static void sortRiskList(ObservableList<Risk> x){
 
-    boolean noFoundLogin = true;
+        x.sort(Comparator.comparing(o -> o.probability * o.consequenceValue));
+        Collections.reverse(x);
+
+    }
+
+    static void setPriority(ObservableList<Risk> x){
+
+        for (int i = 0; i < x.size(); i++) {
+
+            x.get(i).priority = i + 1;
+
+        }
+
+    }
+
+    // -------------------------------------------------{variables}------------------------------------------------------
+
+    boolean noFoundLogin = true; // logIn
+    int counter = 1; // add risk analysis
+
 
     // ------------------------------------------------{InAppFunctions}-------------------------------------------------
     @FXML
-    void logIn(ActionEvent event) {
+    void logIn(ActionEvent event) throws FileNotFoundException {
+        sb.setLength(0);
+        input = new Scanner(new FileReader("credentials.txt"));
 
+        checkCreatedUsers();
         input.close();
+
+
+        String enteredEmail;
+        String enteredPassword;
 
         List<String[]> finalListOfUserDetail = new ArrayList<>();
 
@@ -183,17 +238,18 @@ public class Controller  {
             finalListOfUserDetail.add(tmplist);
         }
 
-        System.out.println("button clicked");
-
-        String enteredEmail = logInTextFieldEmail.getText().toLowerCase();
-        String enteredPassword = logInTextFieldPassword.getText();
+        enteredEmail = logInTextFieldEmail.getText().toLowerCase();
+        enteredPassword = logInTextFieldPassword.getText();
 
 
-        for (int i = 0; i < finalListOfUserDetail.size(); i++) {
 
-            if ((finalListOfUserDetail.get(i)[1].contains(enteredPassword)) && (finalListOfUserDetail.get(i)[0].contains(enteredEmail.toLowerCase()))) {
+
+        for (String[] strings : finalListOfUserDetail) {
+
+            if ((strings[1].contains(enteredPassword)) && (strings[0].contains(enteredEmail.toLowerCase()))) {
                 tabPane.getSelectionModel().select(HomeTab);
                 noFoundLogin = false;
+                startTextWarning.setText(null);
                 break;
 
             }
@@ -205,12 +261,12 @@ public class Controller  {
         }
 
 
-
-
     }
 
     @FXML
     void signUp(ActionEvent event) throws IOException {
+
+        input = new Scanner(new FileReader("credentials.txt"));
 
         String Email = signUpTextFieldEmail.getText().toLowerCase();
         String Password = signUpTextFieldPassword.getText();
@@ -244,6 +300,13 @@ public class Controller  {
 
     }
 
+
+    @FXML
+    void goToCreateRisk(ActionEvent event) {
+        tabPane.getSelectionModel().select(createRiskTab);
+    }
+
+
     @FXML
     void HomeEditButton(ActionEvent event) {
 
@@ -251,13 +314,20 @@ public class Controller  {
 
     @FXML
     void HomeLogOut(ActionEvent event) {
+        logInTextFieldEmail.clear();
+        logInTextFieldPassword.clear();
+        tabPane.getSelectionModel().select(StartTab);
+        noFoundLogin = true;
 
     }
 
     @FXML
     void HomeNewAnalysisButton(ActionEvent event) {
 
-        newRiskAnalysis1.setText("analyse1");
+        homeTextFieldAnalysisName.setVisible(true);
+        HomeButtonOkButton.setVisible(true);
+        HomeButtonOkButton.setDisable(false);
+        homeTextFieldAnalysisName.setDisable(false);
 
     }
 
@@ -267,6 +337,50 @@ public class Controller  {
         tabPane.getSelectionModel().select(editTab);
 
     }
+
+    @FXML
+    void createProject(ActionEvent event) {
+
+        switch (counter) {
+
+            case 1:
+                newRiskAnalysis1.setText(homeTextFieldAnalysisName.getText());
+                break;
+            case 2:
+                newRiskAnalysis2.setText(homeTextFieldAnalysisName.getText());
+                break;
+            case 3:
+                newRiskAnalysis3.setText(homeTextFieldAnalysisName.getText());
+                break;
+            case 4:
+                newRiskAnalysis4.setText(homeTextFieldAnalysisName.getText());
+                break;
+            case 5:
+                newRiskAnalysis5.setText(homeTextFieldAnalysisName.getText());
+                break;
+
+        }
+
+        HomeButtonOkButton.setVisible(false);
+        homeTextFieldAnalysisName.setVisible(false);
+        HomeButtonOkButton.setDisable(true);
+        homeTextFieldAnalysisName.setDisable(true);
+        homeTextFieldAnalysisName.clear();
+
+        counter += 1;
+
+    }
+
+
+    @FXML
+    void createRiskAddRiskToTable(ActionEvent event){
+
+        createRiskTextAreaDescription.getText();
+        createRiskTextFieldProbability.getText();
+        createRiskTextFieldConsequence.getText();
+
+    }
+
 
 
 
