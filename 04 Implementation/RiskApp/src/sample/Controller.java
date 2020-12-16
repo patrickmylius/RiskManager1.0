@@ -6,16 +6,18 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.text.Text;
+import javafx.util.converter.IntegerStringConverter;
 
 import java.io.*;
 import java.util.*;
 
 public class Controller  {
 
-    // saves sign up details
     BufferedWriter output = new BufferedWriter(new FileWriter("credentials.txt",true));
+    public ObservableList<Risk> risks = FXCollections.observableArrayList();
     Scanner input = new Scanner(new FileReader("credentials.txt"));
     public StringBuilder sb = new StringBuilder();
 
@@ -90,6 +92,15 @@ public class Controller  {
 
 
     @FXML
+    private TextArea editRiskTextAreaDescription;
+
+    @FXML
+    private TextField editRiskTextFieldProbability;
+
+    @FXML
+    private TextField editRiskTextFieldConsequence;
+
+    @FXML
     private TextField homeTextFieldAnalysisName;
 
     @FXML
@@ -144,22 +155,21 @@ public class Controller  {
 
     @FXML
     public TableView<Risk> table;
-    public ObservableList<Risk> data;
 
     public Controller() throws IOException {
     }
 
     @FXML
-    private TableColumn<?, ?> tablePriority;
+    public TableColumn<Risk, Integer> tablePriority;
 
     @FXML
-    private TableColumn<?, ?> tableDescription;
+    public TableColumn<Risk, String> tableDescription;
 
     @FXML
-    private TableColumn<?, ?> tableProbability;
+    public TableColumn<Risk, Integer> tableProbability;
 
     @FXML
-    private TableColumn<?, ?> tableConsequence;
+    public TableColumn<Risk, Integer> tableConsequence;
 
 
 
@@ -183,9 +193,27 @@ public class Controller  {
     }
 
     public void initialize(){
+
         checkCreatedUsers();
         HomeButtonOkButton.setVisible(false);
         homeTextFieldAnalysisName.setVisible(false);
+
+        tablePriority.setCellValueFactory(new PropertyValueFactory<>("Priority"));
+        tableDescription.setCellValueFactory(new PropertyValueFactory<>("CaseExplanation"));
+        tableProbability.setCellValueFactory(new PropertyValueFactory<>("Probability"));
+        tableConsequence.setCellValueFactory(new PropertyValueFactory<>("consequenceValue"));
+
+        table.setItems(risks);
+
+
+        table.setEditable(true);
+        tablePriority.setEditable(true);
+        tableDescription.setEditable(true);
+        tableProbability.setEditable(true);
+        tableConsequence.setEditable(true);
+        tableDescription.setCellFactory(TextFieldTableCell.forTableColumn());
+        tableProbability.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        tableConsequence.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
     }
 
@@ -377,24 +405,55 @@ public class Controller  {
     @FXML
     void createRiskAddRiskToTable(ActionEvent event){
 
+        risks.clear();
+
         Risk risk = new Risk(createRiskTextAreaDescription.getText(),
                 Integer.parseInt(createRiskTextFieldProbability.getText()),
                         Integer.parseInt(createRiskTextFieldConsequence.getText()));
+
 
         risklist.add(risk);
 
         sortRiskList();
         setPriority();
 
-        System.out.println(risklist.get(0).priority);
-        System.out.println(risklist.get(0).caseExplanation);
-        System.out.println(risklist.get(0).probability);
-        System.out.println(risklist.get(0).consequenceValue);
+        for (int i = 0; i < risklist.size(); i++) {
+            risks.add(risklist.get(i));
+        }
 
+        table.setItems(risks);
+
+        tabPane.getSelectionModel().select(editTab);
+
+        createRiskTextAreaDescription.clear();
+        createRiskTextFieldProbability.clear();
+        createRiskTextFieldConsequence.clear();
 
     }
 
 
+
+
+    public void changeDescriptionCellEvent(TableColumn.CellEditEvent edittedCell){
+
+        Risk riskSelected = table.getSelectionModel().getSelectedItem();
+        riskSelected.setCaseExplanation(edittedCell.getNewValue().toString());
+
+    }
+
+    public void changeProbabilityCellEvent(TableColumn.CellEditEvent edittedCell){
+
+        Risk riskSelected = table.getSelectionModel().getSelectedItem();
+        riskSelected.setProbability(Integer.parseInt(edittedCell.getNewValue().toString()));
+
+    }
+
+    public void changeConsequenceCellEvent(TableColumn.CellEditEvent edittedCell){
+
+        Risk riskSelected = table.getSelectionModel().getSelectedItem();
+        riskSelected.setConsequenceValue(Integer.parseInt(edittedCell.getNewValue().toString()));
+
+    }
 
 
 

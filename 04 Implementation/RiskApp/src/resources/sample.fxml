@@ -27,7 +27,7 @@
    <children>
       <TabPane fx:id="tabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="StartTab" text="Start">
+          <Tab fx:id="StartTab" closable="false" text="Start">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -54,7 +54,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="SignUpTab" text="Sign Up">
+          <Tab fx:id="SignUpTab" closable="false" text="Sign Up">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -76,7 +76,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="HomeTab" text="Home">
+            <Tab fx:id="HomeTab" closable="false" text="Home">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -94,7 +94,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="editTab" text="Edit">
+            <Tab fx:id="editTab" closable="false" text="Edit">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -105,11 +105,19 @@
                         <Button fx:id="editButtonExport" layoutX="415.0" layoutY="24.0" mnemonicParsing="false" text="Export" />
                         <Button fx:id="editButtonView" layoutX="348.0" layoutY="24.0" mnemonicParsing="false" text="View" />
                         <Button layoutX="488.0" layoutY="24.0" mnemonicParsing="false" text="Add Risk" />
+                        <TableView fx:id="table" layoutX="24.0" layoutY="73.0" prefHeight="484.0" prefWidth="752.0">
+                           <columns>
+                              <TableColumn fx:id="tablePriority" prefWidth="88.80001831054688" text="Priority" />
+                              <TableColumn fx:id="tableDescription" onEditCommit="#changeDescriptionCellEvent" prefWidth="448.8000183105469" text="Description" />
+                              <TableColumn fx:id="tableProbability" minWidth="0.0" onEditCommit="#changeProbabilityCellEvent" prefWidth="109.59991455078125" text="Probability" />
+                              <TableColumn fx:id="tableConsequence" onEditCommit="#changeConsequenceCellEvent" prefWidth="103.99993896484375" text="Consequence" />
+                           </columns>
+                        </TableView>
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="createRiskTab" text="Create Risk">
+            <Tab fx:id="createRiskTab" closable="false" text="Create Risk">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -117,7 +125,7 @@
                         <TextField fx:id="createRiskTextFieldConsequence" layoutX="319.0" layoutY="344.0" promptText="Enter Consequence" />
                         <TextArea fx:id="createRiskTextAreaDescription" layoutX="318.0" layoutY="202.0" prefHeight="75.0" prefWidth="151.0" promptText="Enter Risk Description" />
                         <Button fx:id="createRiskButtonAddToTable" layoutX="319.0" layoutY="387.0" mnemonicParsing="false" onAction="#createRiskAddRiskToTable" prefHeight="25.0" prefWidth="150.0" text="Add to Table" />
-                        <ImageView fitHeight="146.0" fitWidth="150.0" layoutX="321.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="146.0" fitWidth="150.0" layoutX="327.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../03%20Design/Image1.png" />
                            </image>
@@ -131,19 +139,32 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="View">
+            <Tab fx:id="editRiskTab" closable="false" text="Edit Risk">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <ImageView fitHeight="146.0" fitWidth="150.0" layoutX="327.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../../../03%20Design/Image1.png" />
+                           </image>
+                        </ImageView>
+                        <TextArea fx:id="editRiskTextAreaDescription" layoutX="325.0" layoutY="211.0" prefHeight="75.0" prefWidth="151.0" promptText="Enter Risk Description" />
+                        <Label alignment="CENTER" layoutX="324.0" layoutY="165.0" prefHeight="35.0" prefWidth="154.0" text="Edit Risk " textAlignment="CENTER">
+                           <font>
+                              <Font size="24.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="editRiskTextFieldProbability" layoutX="327.0" layoutY="323.0" promptText="Enter Probability" />
+                        <TextField fx:id="editRiskTextFieldConsequence" layoutX="327.0" layoutY="374.0" promptText="Enter Consequence" />
+                     </children>
+                  </AnchorPane>
+              </content>
+            </Tab>
+            <Tab closable="false" text="View">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="viewButtonClose" layoutX="734.0" layoutY="14.0" mnemonicParsing="false" text="Close" />
-                        <TableView fx:id="viewTableView" layoutX="26.0" layoutY="67.0" prefHeight="484.0" prefWidth="752.0">
-                          <columns>
-                            <TableColumn fx:id="tablePriority" prefWidth="88.80001831054688" text="Priority" />
-                            <TableColumn fx:id="tableDescription" prefWidth="448.8000183105469" text="Description" />
-                              <TableColumn fx:id="tableProbability" minWidth="0.0" prefWidth="109.59991455078125" text="Probability" />
-                              <TableColumn fx:id="tableConsequence" prefWidth="103.99993896484375" text="Consequence" />
-                          </columns>
-                        </TableView>
                      </children>
                   </AnchorPane>
               </content>
