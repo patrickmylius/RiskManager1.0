@@ -17,6 +17,13 @@ public class Risk extends ListOfRisks{
         this.consequenceValue = consVal;
     }
 
+    Risk(int prio, String caseExp, int prob, int consVal){
+        this.priority = prio;
+        this.caseExplanation = caseExp;
+        this.probability = prob;
+        this.consequenceValue = consVal;
+    }
+
 
     public int getProbability() {
         return probability;

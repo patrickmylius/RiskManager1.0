@@ -17,9 +17,12 @@ import java.util.*;
 public class Controller  {
 
     BufferedWriter output = new BufferedWriter(new FileWriter("credentials.txt",true));
+    BufferedWriter saveOutput;
     public ObservableList<Risk> risks = FXCollections.observableArrayList();
     Scanner input = new Scanner(new FileReader("credentials.txt"));
+    Scanner loadInput;
     public StringBuilder sb = new StringBuilder();
+    public StringBuilder loadSB = new StringBuilder();
 
     @FXML
     private TabPane tabPane;
@@ -90,15 +93,6 @@ public class Controller  {
 
     // -------------------------------------------------{Text}----------------------------------------------------------
 
-
-    @FXML
-    private TextArea editRiskTextAreaDescription;
-
-    @FXML
-    private TextField editRiskTextFieldProbability;
-
-    @FXML
-    private TextField editRiskTextFieldConsequence;
 
     @FXML
     private TextField homeTextFieldAnalysisName;
@@ -189,6 +183,12 @@ public class Controller  {
     void checkCreatedUsers(){
         while (input.hasNext()) {
             sb.append(input.next());
+        }
+    }
+
+    void checkCreatedProjects(){
+        while (loadInput.hasNext()) {
+            loadSB.append(loadInput.next());
         }
     }
 
@@ -338,7 +338,7 @@ public class Controller  {
 
 
     @FXML
-    void HomeEditButton(ActionEvent event) {
+    void HomeEditButton(ActionEvent event) {    // useless af
 
     }
 
@@ -432,8 +432,6 @@ public class Controller  {
     }
 
 
-
-
     public void changeDescriptionCellEvent(TableColumn.CellEditEvent edittedCell){
 
         Risk riskSelected = table.getSelectionModel().getSelectedItem();
@@ -445,6 +443,8 @@ public class Controller  {
 
         Risk riskSelected = table.getSelectionModel().getSelectedItem();
         riskSelected.setProbability(Integer.parseInt(edittedCell.getNewValue().toString()));
+        sortRiskList();
+        setPriority();
 
     }
 
@@ -452,10 +452,87 @@ public class Controller  {
 
         Risk riskSelected = table.getSelectionModel().getSelectedItem();
         riskSelected.setConsequenceValue(Integer.parseInt(edittedCell.getNewValue().toString()));
+        sortRiskList();
+        setPriority();
 
     }
 
 
+
+    void saveMethod() throws IOException {
+        saveOutput = new BufferedWriter(new FileWriter("allProjects.txt"));
+    }
+
+
+    @FXML
+    void saveProjectChanges(ActionEvent event) throws IOException {
+
+        String projectName = newRiskAnalysis1.getText();
+
+        saveMethod();
+        saveOutput.write("<>\n");
+        saveOutput.write(projectName + "\n");
+        saveOutput.write("----------\n");
+
+        for (int i = 0; i < risklist.size(); i++) {
+
+            saveOutput.write(risklist.get(i).priority + ":");
+            saveOutput.write(risklist.get(i).caseExplanation + ":");
+            saveOutput.write(risklist.get(i).probability + ":");
+            saveOutput.write(risklist.get(i).consequenceValue + "\n");
+            saveOutput.write("----------" + "\n");
+
+        }
+        saveOutput.write("<>\n");
+
+        saveOutput.close();
+
+    }
+
+
+
+    void loadProjectMethod() throws FileNotFoundException {
+        loadInput = new Scanner(new FileReader("allProjects.txt"));
+        loadSB.setLength(0);
+
+        checkCreatedProjects();
+        loadInput.close();
+
+
+        int priority;
+        String description;
+        int probability;
+        int consequence;
+
+        List<String[]> finalListOfRiskDetail = new ArrayList<>();
+        String allRisks = loadSB.toString();
+
+        List<String> listOfRiskDetail = new ArrayList<>(Arrays.asList(allRisks.split("----------")));
+
+//        listOfRiskDetail.remove(listOfRiskDetail.get(0));
+
+
+        for (String s : listOfRiskDetail) {
+            String[] tmplist = s.split(":");
+            finalListOfRiskDetail.add(tmplist);
+        }
+
+
+        newRiskAnalysis1.setText(listOfRiskDetail.get(0));
+
+
+
+
+                System.out.println(listOfRiskDetail.toString());
+        System.out.println(finalListOfRiskDetail.toString());
+
+//        for (int i = 0; i < listOfRiskDetail.size(); i++) {
+//
+//            Risk tmpRisk = new Risk(finalListOfRiskDetail.get(i))
+//
+//        }
+
+    }
 
     // -----------------------------------------------{Hakuna Matata}---------------------------------------------------
 

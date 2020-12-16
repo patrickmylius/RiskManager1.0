@@ -99,7 +99,7 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="editButtonEdit" layoutX="285.0" layoutY="24.0" mnemonicParsing="false" text="Edit" />
-                        <Button fx:id="editButtonSave" layoutX="153.0" layoutY="24.0" mnemonicParsing="false" text="Save Changes" />
+                        <Button fx:id="editButtonSave" layoutX="153.0" layoutY="24.0" mnemonicParsing="false" onAction="#saveProjectChanges" text="Save Changes" />
                         <Button fx:id="editButtonDelete" layoutX="726.0" layoutY="24.0" mnemonicParsing="false" text="Delete" />
                         <Button fx:id="editButtonNew" layoutX="22.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToCreateRisk" text="Add New Risk" />
                         <Button fx:id="editButtonExport" layoutX="415.0" layoutY="24.0" mnemonicParsing="false" text="Export" />
@@ -135,27 +135,6 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-            <Tab fx:id="editRiskTab" closable="false" text="Edit Risk">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <ImageView fitHeight="146.0" fitWidth="150.0" layoutX="327.0" pickOnBounds="true" preserveRatio="true">
-                           <image>
-                              <Image url="@../../../../03%20Design/Image1.png" />
-                           </image>
-                        </ImageView>
-                        <TextArea fx:id="editRiskTextAreaDescription" layoutX="325.0" layoutY="211.0" prefHeight="75.0" prefWidth="151.0" promptText="Enter Risk Description" />
-                        <Label alignment="CENTER" layoutX="324.0" layoutY="165.0" prefHeight="35.0" prefWidth="154.0" text="Edit Risk " textAlignment="CENTER">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Label>
-                        <TextField fx:id="editRiskTextFieldProbability" layoutX="327.0" layoutY="323.0" promptText="Enter Probability" />
-                        <TextField fx:id="editRiskTextFieldConsequence" layoutX="327.0" layoutY="374.0" promptText="Enter Consequence" />
                      </children>
                   </AnchorPane>
               </content>
