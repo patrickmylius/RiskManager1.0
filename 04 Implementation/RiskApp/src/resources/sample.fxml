@@ -31,20 +31,20 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ImageView fitHeight="146.0" fitWidth="150.0" layoutX="527.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="146.0" fitWidth="150.0" layoutX="507.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../03%20Design/Image1.png" />
                            </image>
                         </ImageView>
-                        <Button fx:id="loginButtonLogIn" layoutX="526.0" layoutY="296.0" mnemonicParsing="false" onAction="#logIn" prefHeight="26.0" prefWidth="148.0" text="Log in" />
-                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="526.0" layoutY="146.0" prefHeight="54.0" prefWidth="148.0" text="Log In " textAlignment="CENTER">
+                        <Button fx:id="loginButtonLogIn" layoutX="507.0" layoutY="296.0" mnemonicParsing="false" onAction="#logIn" prefHeight="26.0" prefWidth="148.0" text="Log in" />
+                        <Label alignment="CENTER" contentDisplay="CENTER" layoutX="507.0" layoutY="146.0" prefHeight="54.0" prefWidth="148.0" text="Log In " textAlignment="CENTER">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
                         <TextField fx:id="logInTextFieldPassword" layoutX="507.0" layoutY="245.0" promptText="Enter Password" />
                         <TextField fx:id="logInTextFieldEmail" layoutX="507.0" layoutY="200.0" promptText="Enter E-mail" />
-                        <Button fx:id="loginButtonSignUp" layoutX="526.0" layoutY="339.0" mnemonicParsing="false" onAction="#GoToSignUp" prefHeight="26.0" prefWidth="148.0" text="Sign up" />
+                        <Button fx:id="loginButtonSignUp" layoutX="507.0" layoutY="339.0" mnemonicParsing="false" onAction="#GoToSignUp" prefHeight="26.0" prefWidth="148.0" text="Sign up" />
                         <Text fx:id="startTextWarning" fill="#ff4747" layoutX="495.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="209.1943359375">
                            <font>
                               <Font size="18.0" />
@@ -58,13 +58,13 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="signUpButtonSignUp" layoutX="526.0" layoutY="332.0" mnemonicParsing="false" onAction="#signUp" prefHeight="26.0" prefWidth="148.0" text="Sign Up" />
-                        <Label alignment="CENTER" layoutX="526.0" layoutY="123.0" prefHeight="54.0" prefWidth="148.0" text="Sign Up">
+                        <Button fx:id="signUpButtonSignUp" layoutX="507.0" layoutY="332.0" mnemonicParsing="false" onAction="#signUp" prefHeight="26.0" prefWidth="148.0" text="Sign Up" />
+                        <Label alignment="CENTER" layoutX="507.0" layoutY="123.0" prefHeight="54.0" prefWidth="148.0" text="Sign Up">
                            <font>
                               <Font size="24.0" />
                            </font>
                         </Label>
-                        <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="525.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="507.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../03%20Design/Image1.png" />
                            </image>
@@ -126,14 +126,14 @@
                      <children>
                         <TextField fx:id="createRiskTextFieldProbability" layoutX="507.0" layoutY="268.0" promptText="Enter Probability" />
                         <TextField fx:id="createRiskTextFieldConsequence" layoutX="507.0" layoutY="317.0" promptText="Enter Consequence" />
-                        <TextArea fx:id="createRiskTextAreaDescription" layoutX="525.0" layoutY="180.0" prefHeight="75.0" prefWidth="151.0" promptText="Enter Risk Description" />
-                        <Button fx:id="createRiskButtonAddToTable" layoutX="526.0" layoutY="372.0" mnemonicParsing="false" onAction="#createRiskAddRiskToTable" prefHeight="25.0" prefWidth="150.0" text="Add to Table" />
-                        <ImageView fitHeight="146.0" fitWidth="150.0" layoutX="527.0" pickOnBounds="true" preserveRatio="true">
+                        <TextArea fx:id="createRiskTextAreaDescription" layoutX="507.0" layoutY="180.0" prefHeight="75.0" prefWidth="151.0" promptText="Enter Risk Description" />
+                        <Button fx:id="createRiskButtonAddToTable" layoutX="507.0" layoutY="372.0" mnemonicParsing="false" onAction="#createRiskAddRiskToTable" prefHeight="25.0" prefWidth="150.0" text="Add to Table" />
+                        <ImageView fitHeight="146.0" fitWidth="150.0" layoutX="507.0" pickOnBounds="true" preserveRatio="true">
                            <image>
                               <Image url="@../../../../03%20Design/Image1.png" />
                            </image>
                         </ImageView>
-                        <Label alignment="CENTER" layoutX="523.0" layoutY="129.0" prefHeight="35.0" prefWidth="154.0" text="Add Risk " textAlignment="CENTER">
+                        <Label alignment="CENTER" layoutX="507.0" layoutY="129.0" prefHeight="35.0" prefWidth="154.0" text="Add Risk " textAlignment="CENTER">
                            <font>
                               <Font size="24.0" />
                            </font>
