@@ -191,16 +191,6 @@ public class Controller  {
     // ------------------------------------------------{Functions}------------------------------------------------------
 
 
-//    void createRisk(){
-//
-//        String description = createRiskTextAreaDescription.getText();
-//        int probability = Integer.parseInt(createRiskTextFieldProbability.getText());
-//        int consequence = Integer.parseInt(createRiskTextFieldConsequence.getText());
-//
-//        Risk risk = new Risk(description,probability,consequence);
-//
-//    }
-
     void checkCreatedUsers(){
         while (input.hasNext()) {
             sb.append(input.next());
