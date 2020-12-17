@@ -166,6 +166,18 @@ public class Controller  {
     public TableColumn<Risk, Integer> tableConsequence;
 
 
+    @FXML
+    private TableColumn<Risk, String> tableResponseStrategy;
+
+    @FXML
+    private TableColumn<Risk, Integer> tableRevisedProbability;
+
+    @FXML
+    private TableColumn<Risk, Integer> tableRevisedConsequence;
+
+
+
+
 
     // ------------------------------------------------{Functions}------------------------------------------------------
 
@@ -201,7 +213,12 @@ public class Controller  {
         tablePriority.setCellValueFactory(new PropertyValueFactory<>("Priority"));
         tableDescription.setCellValueFactory(new PropertyValueFactory<>("CaseExplanation"));
         tableProbability.setCellValueFactory(new PropertyValueFactory<>("Probability"));
-        tableConsequence.setCellValueFactory(new PropertyValueFactory<>("consequenceValue"));
+        tableConsequence.setCellValueFactory(new PropertyValueFactory<>("ConsequenceValue"));
+
+        tableResponseStrategy.setCellValueFactory(new PropertyValueFactory<>("ResponseStrategy"));
+        tableRevisedProbability.setCellValueFactory(new PropertyValueFactory<>("RevisedProbability"));
+        tableRevisedConsequence.setCellValueFactory(new PropertyValueFactory<>("RevisedConsequenceValue"));
+
 
         table.setItems(risks);
 
@@ -211,9 +228,18 @@ public class Controller  {
         tableDescription.setEditable(true);
         tableProbability.setEditable(true);
         tableConsequence.setEditable(true);
+
+        tableResponseStrategy.setEditable(true);
+        tableRevisedProbability.setEditable(true);
+        tableRevisedConsequence.setEditable(true);
+
         tableDescription.setCellFactory(TextFieldTableCell.forTableColumn());
         tableProbability.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
         tableConsequence.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+
+        tableResponseStrategy.setCellFactory(TextFieldTableCell.forTableColumn());
+        tableRevisedProbability.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
+        tableRevisedConsequence.setCellFactory(TextFieldTableCell.forTableColumn(new IntegerStringConverter()));
 
     }
 
@@ -233,6 +259,7 @@ public class Controller  {
         }
 
     }
+
 
     // -------------------------------------------------{variables}------------------------------------------------------
 
@@ -457,10 +484,36 @@ public class Controller  {
 
     }
 
+    public void changeResponseStrategyCellEvent(TableColumn.CellEditEvent edittedCell){
+
+        Risk riskSelected = table.getSelectionModel().getSelectedItem();
+        riskSelected.setResponseStrategy(edittedCell.getNewValue().toString());
+
+    }
+
+    public void changeRevisedProbabilityCellEvent(TableColumn.CellEditEvent edittedCell){
+
+        Risk riskSelected = table.getSelectionModel().getSelectedItem();
+        riskSelected.setRevisedProbability(Integer.parseInt(edittedCell.getNewValue().toString()));
+//        sortRiskList();
+//        setPriority();
+
+    }
+
+    public void changeRevisedConsequenceCellEvent(TableColumn.CellEditEvent edittedCell){
+
+        Risk riskSelected = table.getSelectionModel().getSelectedItem();
+        riskSelected.setRevisedConsequenceValue(Integer.parseInt(edittedCell.getNewValue().toString()));
+//        sortRiskList();
+//        setPriority();
+
+    }
+
+
 
 
     void saveMethod() throws IOException {
-        saveOutput = new BufferedWriter(new FileWriter("allProjects.txt"));
+        saveOutput = new BufferedWriter(new FileWriter("allProjects.txt", true));
     }
 
 
@@ -470,7 +523,7 @@ public class Controller  {
         String projectName = newRiskAnalysis1.getText();
 
         saveMethod();
-        saveOutput.write("<>\n");
+
         saveOutput.write(projectName + "\n");
         saveOutput.write("----------\n");
 
@@ -479,7 +532,10 @@ public class Controller  {
             saveOutput.write(risklist.get(i).priority + ":");
             saveOutput.write(risklist.get(i).caseExplanation + ":");
             saveOutput.write(risklist.get(i).probability + ":");
-            saveOutput.write(risklist.get(i).consequenceValue + "\n");
+            saveOutput.write(risklist.get(i).consequenceValue + ":");
+            saveOutput.write(risklist.get(i).responseStrategy + ":");
+            saveOutput.write(risklist.get(i).revisedProbability + ":");
+            saveOutput.write(risklist.get(i).revisedConsequenceValue + "\n");
             saveOutput.write("----------" + "\n");
 
         }

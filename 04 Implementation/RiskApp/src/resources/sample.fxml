@@ -25,7 +25,7 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <TabPane fx:id="tabPane" prefHeight="600.0" prefWidth="800.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" prefHeight="800.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
           <Tab fx:id="StartTab" closable="false" text="Start">
             <content>
@@ -105,12 +105,15 @@
                         <Button fx:id="editButtonExport" layoutX="415.0" layoutY="24.0" mnemonicParsing="false" text="Export" />
                         <Button fx:id="editButtonView" layoutX="348.0" layoutY="24.0" mnemonicParsing="false" text="View" />
                         <Button layoutX="488.0" layoutY="24.0" mnemonicParsing="false" text="Add Risk" />
-                        <TableView fx:id="table" layoutX="24.0" layoutY="73.0" prefHeight="484.0" prefWidth="752.0">
+                        <TableView fx:id="table" layoutX="24.0" layoutY="73.0" prefHeight="670.0" prefWidth="1150.0">
                            <columns>
-                              <TableColumn fx:id="tablePriority" prefWidth="88.80001831054688" text="Priority" />
-                              <TableColumn fx:id="tableDescription" onEditCommit="#changeDescriptionCellEvent" prefWidth="448.8000183105469" text="Description" />
-                              <TableColumn fx:id="tableProbability" minWidth="0.0" onEditCommit="#changeProbabilityCellEvent" prefWidth="109.59991455078125" text="Probability" />
-                              <TableColumn fx:id="tableConsequence" onEditCommit="#changeConsequenceCellEvent" prefWidth="103.99993896484375" text="Consequence" />
+                              <TableColumn fx:id="tablePriority" text="Priority" />
+                              <TableColumn fx:id="tableDescription" onEditCommit="#changeDescriptionCellEvent" prefWidth="300.0" text="Description" />
+                              <TableColumn fx:id="tableProbability" minWidth="0.0" onEditCommit="#changeProbabilityCellEvent" prefWidth="100.0" text="Probability" />
+                              <TableColumn fx:id="tableConsequence" onEditCommit="#changeConsequenceCellEvent" prefWidth="100.0" text="Consequence" />
+                              <TableColumn fx:id="tableResponseStrategy" onEditCommit="#changeResponseStrategyCellEvent" prefWidth="300.0" text="Response Strategy" />
+                              <TableColumn fx:id="tableRevisedProbability" minWidth="0.0" onEditCommit="#changeRevisedProbabilityCellEvent" prefWidth="135.0" text="Revised Probability" />
+                              <TableColumn fx:id="tableRevisedConsequence" minWidth="0.0" onEditCommit="#changeRevisedConsequenceCellEvent" prefWidth="135.0" text="Revised Consequence" />
                            </columns>
                         </TableView>
                      </children>

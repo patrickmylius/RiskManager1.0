@@ -3,13 +3,14 @@ package sample;
 public class Risk extends ListOfRisks{
 
     int probability;
-    int revisedProbability;
+    int revisedProbability; //
     int consequenceValue;
-    int revisedConsequenceValue;
+    int revisedConsequenceValue; //
     int priority;
     int finalPriority;
 
     String caseExplanation;
+    String responseStrategy;
 
     Risk(String caseExp, int prob, int consVal){
         this.caseExplanation = caseExp;
@@ -79,5 +80,14 @@ public class Risk extends ListOfRisks{
 
     public void setCaseExplanation(String caseExplanation) {
         this.caseExplanation = caseExplanation;
+    }
+
+
+    public String getResponseStrategy() {
+        return responseStrategy;
+    }
+
+    public void setResponseStrategy(String responseStrategy) {
+        this.responseStrategy = responseStrategy;
     }
 }
