@@ -13,6 +13,8 @@ import javafx.util.converter.IntegerStringConverter;
 
 import java.io.*;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class Controller  {
 
@@ -23,6 +25,9 @@ public class Controller  {
     Scanner loadInput;
     public StringBuilder sb = new StringBuilder();
     public StringBuilder loadSB = new StringBuilder();
+
+
+    // --------------------------------------------------{ Tabs }-------------------------------------------------------
 
     @FXML
     private TabPane tabPane;
@@ -47,7 +52,16 @@ public class Controller  {
     // --------------------------------------------------{Buttons}------------------------------------------------------
 
     @FXML
+    private Button clearTableButton;
+
+    @FXML
     private Button HomeButtonOkButton;
+
+    @FXML
+    private Button backToLoginPage;
+
+    @FXML
+    private Button editButtonHome;
 
     @FXML
     private Button loginButtonLogIn;
@@ -65,10 +79,7 @@ public class Controller  {
     private Button homeButtonLogOut;
 
     @FXML
-    private Button homeButtonEdit;
-
-    @FXML
-    private Button editButtonEdit;
+    private Button createRiskButtonAddToTable;
 
     @FXML
     private Button editButtonSave;
@@ -80,19 +91,17 @@ public class Controller  {
     private Button editButtonNew;
 
     @FXML
-    private Button editButtonExport;
-
-    @FXML
     private Button editButtonView;
 
     @FXML
     private Button viewButtonClose;
 
-    @FXML
-    private Button createRiskButtonAddToTable;
+
 
     // -------------------------------------------------{Text}----------------------------------------------------------
 
+    @FXML
+    private TextField editTextfieldDeleteByPriority;
 
     @FXML
     private TextField homeTextFieldAnalysisName;
@@ -182,15 +191,15 @@ public class Controller  {
     // ------------------------------------------------{Functions}------------------------------------------------------
 
 
-    void createRisk(){
-
-        String description = createRiskTextAreaDescription.getText();
-        int probability = Integer.parseInt(createRiskTextFieldProbability.getText());
-        int consequence = Integer.parseInt(createRiskTextFieldConsequence.getText());
-
-        Risk risk = new Risk(description,probability,consequence);
-
-    }
+//    void createRisk(){
+//
+//        String description = createRiskTextAreaDescription.getText();
+//        int probability = Integer.parseInt(createRiskTextFieldProbability.getText());
+//        int consequence = Integer.parseInt(createRiskTextFieldConsequence.getText());
+//
+//        Risk risk = new Risk(description,probability,consequence);
+//
+//    }
 
     void checkCreatedUsers(){
         while (input.hasNext()) {
@@ -205,6 +214,11 @@ public class Controller  {
     }
 
     public void initialize(){
+
+        tabPane.setTabMinWidth(0);
+        tabPane.setTabMinHeight(0);
+        tabPane.setTabMaxWidth(0);
+        tabPane.setTabMaxHeight(0);
 
         checkCreatedUsers();
         HomeButtonOkButton.setVisible(false);
@@ -279,9 +293,6 @@ public class Controller  {
         input.close();
 
 
-        String enteredEmail;
-        String enteredPassword;
-
         List<String[]> finalListOfUserDetail = new ArrayList<>();
 
         String allLogins = sb.toString();
@@ -295,15 +306,14 @@ public class Controller  {
             finalListOfUserDetail.add(tmplist);
         }
 
-        enteredEmail = logInTextFieldEmail.getText().toLowerCase();
-        enteredPassword = logInTextFieldPassword.getText();
-
-
+        String enteredEmail = logInTextFieldEmail.getText().toLowerCase();
+        String enteredPassword = logInTextFieldPassword.getText();
 
 
         for (String[] strings : finalListOfUserDetail) {
 
-            if ((strings[1].contains(enteredPassword)) && (strings[0].contains(enteredEmail.toLowerCase()))) {
+            if ((strings[1].contains(enteredPassword) && !enteredPassword.equals("")) &&
+                    (strings[0].contains(enteredEmail.toLowerCase()) && !enteredEmail.equals(""))) {
                 tabPane.getSelectionModel().select(HomeTab);
                 noFoundLogin = false;
                 startTextWarning.setText(null);
@@ -312,6 +322,7 @@ public class Controller  {
             }
 
         }
+
 
         if(noFoundLogin){
             startTextWarning.setText("Wrong email or password");
@@ -357,17 +368,16 @@ public class Controller  {
 
     }
 
-
     @FXML
     void goToCreateRisk(ActionEvent event) {
         tabPane.getSelectionModel().select(createRiskTab);
     }
 
 
-    @FXML
-    void HomeEditButton(ActionEvent event) {    // useless af
-
-    }
+//    @FXML
+//    void HomeEditButton(ActionEvent event) {    // useless af
+//
+//    }
 
     @FXML
     void HomeLogOut(ActionEvent event) {
@@ -393,6 +403,16 @@ public class Controller  {
 
         tabPane.getSelectionModel().select(editTab);
 
+    }
+
+    @FXML
+    void goHome(ActionEvent event) {
+        tabPane.getSelectionModel().select(HomeTab);
+    }
+
+    @FXML
+    void goToLogin(ActionEvent event) {
+        tabPane.getSelectionModel().select(StartTab);
     }
 
     @FXML
@@ -513,7 +533,7 @@ public class Controller  {
 
 
     void saveMethod() throws IOException {
-        saveOutput = new BufferedWriter(new FileWriter("allProjects.txt", true));
+        saveOutput = new BufferedWriter(new FileWriter("allProjects.txt"));
     }
 
 
@@ -589,6 +609,35 @@ public class Controller  {
 //        }
 
     }
+
+    @FXML
+    public void deleteByPriority(ActionEvent actionEvent) {
+
+        int index = Integer.parseInt(editTextfieldDeleteByPriority.getText());
+        index = index-1;
+
+        risklist.remove(index);
+        risks.remove(index);
+
+        editTextfieldDeleteByPriority.clear();
+
+        sortRiskList();
+        setPriority();
+
+        table.setItems(risks);
+
+    }
+
+    @FXML
+    public void clearTable(ActionEvent actionEvent) {
+
+        risks.clear();
+        risklist.clear();
+
+        table.setItems(risks);
+
+    }
+
 
     // -----------------------------------------------{Hakuna Matata}---------------------------------------------------
 

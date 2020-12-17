@@ -1,25 +1,8 @@
 <>
-project
+blabla
 ----------
-1:blablabla:45:5
+1:anders dræber os:2:3:null:0:0
 ----------
-2:blabla:1:2
-----------
-<>
-davs
-----------
-1:eeeeh:9:10:dunno:0:0
-----------
-2:blabla:1:2:null:0:0
-----------
-<>
-REEEEEEEE
-----------
-1:skrald til copy paste:10:10:Google:4:1
-----------
-2:fuck
-
-
-:8:10:null:0:0
+2:blablabla:1:2:null:0:0
 ----------
 <>

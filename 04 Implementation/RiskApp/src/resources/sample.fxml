@@ -17,7 +17,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<GridPane alignment="center" hgap="10" vgap="10" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <columnConstraints>
       <ColumnConstraints />
    </columnConstraints>
@@ -25,9 +25,9 @@
       <RowConstraints />
    </rowConstraints>
    <children>
-      <TabPane fx:id="tabPane" prefHeight="800.0" prefWidth="1200.0" tabClosingPolicy="UNAVAILABLE">
+      <TabPane fx:id="tabPane" prefHeight="800.0" prefWidth="1200.0" style="-fx-tab-min-height: 0;" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab fx:id="StartTab" closable="false" text="Start">
+          <Tab fx:id="StartTab" closable="false" style="visibility: hidden; -fx-padding: 0 0 0 0;" text="Start">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -45,7 +45,7 @@
                         <TextField fx:id="logInTextFieldPassword" layoutX="507.0" layoutY="245.0" promptText="Enter Password" />
                         <TextField fx:id="logInTextFieldEmail" layoutX="507.0" layoutY="200.0" promptText="Enter E-mail" />
                         <Button fx:id="loginButtonSignUp" layoutX="507.0" layoutY="339.0" mnemonicParsing="false" onAction="#GoToSignUp" prefHeight="26.0" prefWidth="148.0" text="Sign up" />
-                        <Text fx:id="startTextWarning" fill="#ff4747" layoutX="495.0" layoutY="124.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="209.1943359375">
+                        <Text fx:id="startTextWarning" fill="#ff4747" layoutX="476.0" layoutY="140.0" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" wrappingWidth="209.1943359375">
                            <font>
                               <Font size="18.0" />
                            </font>
@@ -54,7 +54,7 @@
                   </AnchorPane>
             </content>
           </Tab>
-          <Tab fx:id="SignUpTab" closable="false" text="Sign Up">
+          <Tab fx:id="SignUpTab" closable="false" style="visibility: hidden; -fx-padding: 0 0 0 0;" text="Sign Up">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -72,39 +72,38 @@
                         <TextField fx:id="signUpTextFieldEmail" layoutX="507.0" layoutY="177.0" promptText="Enter E-mail" />
                         <TextField fx:id="signUpTextFieldPassword" layoutX="507.0" layoutY="223.0" promptText="Enter Password" />
                         <TextField fx:id="signUpTextFieldVerifyPassword" layoutX="507.0" layoutY="268.0" promptText="Verify Password" />
+                        <Button fx:id="backToLoginPage" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#goToLogin" text="Back">
+                           <font>
+                              <Font size="14.0" />
+                           </font>
+                        </Button>
                      </children>
                   </AnchorPane>
             </content>
           </Tab>
-            <Tab fx:id="HomeTab" closable="false" text="Home">
+            <Tab fx:id="HomeTab" closable="false" style="visibility: hidden; -fx-padding: 0 0 0 0;" text="Home">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
                         <Button fx:id="homeButtonNew" layoutX="27.0" layoutY="27.0" mnemonicParsing="false" onAction="#HomeNewAnalysisButton" text="New Riskanalysis" />
                         <Button fx:id="homeButtonLogOut" layoutX="1104.0" layoutY="27.0" mnemonicParsing="false" onAction="#HomeLogOut" text="Log out" />
-                        <Button fx:id="homeButtonEdit" layoutX="172.0" layoutY="27.0" mnemonicParsing="false" onAction="#HomeEditButton" text="Edit" />
                         <Text fx:id="newRiskAnalysis1" layoutX="27.0" layoutY="94.0" onMouseClicked="#goToEdit" strokeType="OUTSIDE" strokeWidth="0.0" />
                         <Text fx:id="newRiskAnalysis2" layoutX="27.0" layoutY="123.0" onMouseClicked="#goToEdit" strokeType="OUTSIDE" strokeWidth="0.0" />
                         <Text fx:id="newRiskAnalysis3" layoutX="27.0" layoutY="151.0" onMouseClicked="#goToEdit" strokeType="OUTSIDE" strokeWidth="0.0" />
                         <Text fx:id="newRiskAnalysis4" layoutX="27.0" layoutY="181.0" onMouseClicked="#goToEdit" strokeType="OUTSIDE" strokeWidth="0.0" />
                         <Text fx:id="newRiskAnalysis5" layoutX="27.0" layoutY="211.0" onMouseClicked="#goToEdit" strokeType="OUTSIDE" strokeWidth="0.0" />
-                        <TextField fx:id="homeTextFieldAnalysisName" layoutX="251.0" layoutY="27.0" promptText="Enter Analysis Name" />
-                        <Button fx:id="HomeButtonOkButton" layoutX="400.0" layoutY="27.0" mnemonicParsing="false" onAction="#createProject" text="OK" />
+                        <TextField fx:id="homeTextFieldAnalysisName" layoutX="160.0" layoutY="27.0" promptText="Enter Analysis Name" />
+                        <Button fx:id="HomeButtonOkButton" layoutX="309.0" layoutY="27.0" mnemonicParsing="false" onAction="#createProject" text="OK" />
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="editTab" closable="false" text="Edit">
+            <Tab fx:id="editTab" closable="false" style="visibility: hidden; -fx-padding: 0 0 0 0;" text="Edit">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <Button fx:id="editButtonEdit" layoutX="285.0" layoutY="24.0" mnemonicParsing="false" text="Edit" />
-                        <Button fx:id="editButtonSave" layoutX="153.0" layoutY="24.0" mnemonicParsing="false" onAction="#saveProjectChanges" text="Save Changes" />
-                        <Button fx:id="editButtonDelete" layoutX="726.0" layoutY="24.0" mnemonicParsing="false" text="Delete" />
-                        <Button fx:id="editButtonNew" layoutX="22.0" layoutY="24.0" mnemonicParsing="false" onAction="#goToCreateRisk" text="Add New Risk" />
-                        <Button fx:id="editButtonExport" layoutX="415.0" layoutY="24.0" mnemonicParsing="false" text="Export" />
-                        <Button fx:id="editButtonView" layoutX="348.0" layoutY="24.0" mnemonicParsing="false" text="View" />
-                        <Button layoutX="488.0" layoutY="24.0" mnemonicParsing="false" text="Add Risk" />
+                        <Button fx:id="editButtonSave" layoutX="139.0" layoutY="37.0" mnemonicParsing="false" onAction="#saveProjectChanges" text="Save Changes" />
+                        <Button fx:id="editButtonNew" layoutX="24.0" layoutY="37.0" mnemonicParsing="false" onAction="#goToCreateRisk" text="Add New Risk" />
                         <TableView fx:id="table" layoutX="24.0" layoutY="73.0" prefHeight="670.0" prefWidth="1150.0">
                            <columns>
                               <TableColumn fx:id="tablePriority" text="Priority" />
@@ -116,11 +115,14 @@
                               <TableColumn fx:id="tableRevisedConsequence" minWidth="0.0" onEditCommit="#changeRevisedConsequenceCellEvent" prefWidth="135.0" text="Revised Consequence" />
                            </columns>
                         </TableView>
+                        <Button fx:id="editButtonHome" layoutX="600.0" layoutY="37.0" mnemonicParsing="false" onAction="#goHome" text="Home" />
+                        <TextField fx:id="editTextfieldDeleteByPriority" layoutX="904.0" layoutY="38.0" onAction="#deleteByPriority" prefHeight="25.0" prefWidth="106.0" promptText="Delete By Priority" />
+                        <Button fx:id="clearTableButton" layoutX="1099.0" layoutY="38.0" mnemonicParsing="false" onAction="#clearTable" text="Clear Table" />
                      </children>
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab fx:id="createRiskTab" closable="false" text="Create Risk">
+            <Tab fx:id="createRiskTab" closable="false" style="visibility: hidden; -fx-padding: 0 0 0 0;" text="Create Risk">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -138,15 +140,6 @@
                               <Font size="24.0" />
                            </font>
                         </Label>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </Tab>
-            <Tab closable="false" text="View">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <Button fx:id="viewButtonClose" layoutX="1130.0" layoutY="14.0" mnemonicParsing="false" text="Close" />
                      </children>
                   </AnchorPane>
               </content>
