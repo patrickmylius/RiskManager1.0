@@ -8,6 +8,24 @@ public class Risk extends ListOfRisks{
     int revisedConsequenceValue; //
     int priority;
     int finalPriority;
+    int sortProbability;
+    int sortConsequence;
+
+    public int getSortProbability() {
+        return sortProbability;
+    }
+
+    public void setSortProbability(int sortProbability) {
+        this.sortProbability = sortProbability;
+    }
+
+    public int getSortConsequence() {
+        return sortConsequence;
+    }
+
+    public void setSortConsequence(int sortConsequence) {
+        this.sortConsequence = sortConsequence;
+    }
 
     String caseExplanation;
     String responseStrategy;
@@ -16,6 +34,8 @@ public class Risk extends ListOfRisks{
         this.caseExplanation = caseExp;
         this.probability = prob;
         this.consequenceValue = consVal;
+        this.sortProbability = prob;
+        this.sortConsequence = consVal;
     }
 
     Risk(int prio, String caseExp, int prob, int consVal){
@@ -23,6 +43,8 @@ public class Risk extends ListOfRisks{
         this.caseExplanation = caseExp;
         this.probability = prob;
         this.consequenceValue = consVal;
+        this.sortProbability = prob;
+        this.sortConsequence = consVal;
     }
 
 

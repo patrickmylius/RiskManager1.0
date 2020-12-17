@@ -259,7 +259,7 @@ public class Controller  {
 
     static void sortRiskList(){
 
-        risklist.sort(Comparator.comparing(o -> o.probability * o.consequenceValue));
+        risklist.sort(Comparator.comparing(o -> o.sortProbability * o.sortConsequence));
         Collections.reverse(risklist);
 
     }
@@ -374,11 +374,6 @@ public class Controller  {
     }
 
 
-//    @FXML
-//    void HomeEditButton(ActionEvent event) {    // useless af
-//
-//    }
-
     @FXML
     void HomeLogOut(ActionEvent event) {
         logInTextFieldEmail.clear();
@@ -468,6 +463,7 @@ public class Controller  {
             risks.add(risklist.get(i));
         }
 
+        table.refresh();
         table.setItems(risks);
 
         tabPane.getSelectionModel().select(editTab);
@@ -478,14 +474,18 @@ public class Controller  {
 
     }
 
-
+    @FXML
     public void changeDescriptionCellEvent(TableColumn.CellEditEvent edittedCell){
 
         Risk riskSelected = table.getSelectionModel().getSelectedItem();
         riskSelected.setCaseExplanation(edittedCell.getNewValue().toString());
 
+
+        table.setItems(risks);
+        table.refresh();
     }
 
+    @FXML
     public void changeProbabilityCellEvent(TableColumn.CellEditEvent edittedCell){
 
         Risk riskSelected = table.getSelectionModel().getSelectedItem();
@@ -493,8 +493,13 @@ public class Controller  {
         sortRiskList();
         setPriority();
 
+
+
+        table.setItems(risks);
+        table.refresh();
     }
 
+    @FXML
     public void changeConsequenceCellEvent(TableColumn.CellEditEvent edittedCell){
 
         Risk riskSelected = table.getSelectionModel().getSelectedItem();
@@ -502,31 +507,47 @@ public class Controller  {
         sortRiskList();
         setPriority();
 
+
+        table.setItems(risks);
+        table.refresh();
     }
 
+    @FXML
     public void changeResponseStrategyCellEvent(TableColumn.CellEditEvent edittedCell){
 
         Risk riskSelected = table.getSelectionModel().getSelectedItem();
         riskSelected.setResponseStrategy(edittedCell.getNewValue().toString());
 
+
+        table.setItems(risks);
+        table.refresh();
     }
 
+    @FXML
     public void changeRevisedProbabilityCellEvent(TableColumn.CellEditEvent edittedCell){
 
         Risk riskSelected = table.getSelectionModel().getSelectedItem();
         riskSelected.setRevisedProbability(Integer.parseInt(edittedCell.getNewValue().toString()));
-//        sortRiskList();
-//        setPriority();
+        riskSelected.sortProbability = riskSelected.revisedProbability;
+        sortRiskList();
+        setPriority();
 
+        table.setItems(risks);
+        table.refresh();
     }
 
+    @FXML
     public void changeRevisedConsequenceCellEvent(TableColumn.CellEditEvent edittedCell){
 
         Risk riskSelected = table.getSelectionModel().getSelectedItem();
         riskSelected.setRevisedConsequenceValue(Integer.parseInt(edittedCell.getNewValue().toString()));
-//        sortRiskList();
-//        setPriority();
+        riskSelected.sortConsequence = riskSelected.revisedConsequenceValue;
+        sortRiskList();
+        setPriority();
 
+
+        table.setItems(risks);
+        table.refresh();
     }
 
 
@@ -624,6 +645,7 @@ public class Controller  {
         sortRiskList();
         setPriority();
 
+        table.refresh();
         table.setItems(risks);
 
     }
@@ -634,6 +656,7 @@ public class Controller  {
         risks.clear();
         risklist.clear();
 
+        table.refresh();
         table.setItems(risks);
 
     }
